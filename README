@@ -1,0 +1,26 @@
+This is a basic filter for the Jinja2 templating language that removes markdown footnotes from rendered text.  For example, the text:
+
+  Lorem ipsum dolor sit amet[^footnote1], consectetur adipiscing elit. Maecenas id feugiat odio. Ut volutpat congue mattis. Cras[^footnote2] quis enim vel tellus pellentesque fermentum. 
+    
+Would be rendered as:
+    
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id feugiat odio. Ut volutpat congue mattis. Cras quis enim vel tellus pellentesque fermentum.
+
+To install:
+
+  python setup.py install
+
+To use with Jinja2:
+
+  env = Environment(extensions=['FootnoteRemover.FootnoteRemover'])
+
+To use with Hyde, in `site.yaml`:
+
+  jinja2:
+    extensions:
+      - FootnoteRemover.FootnoteRemover
+
+And then in a template:
+
+  {{ post.excerpt|removefootnotes|markdown|typogrify }}
+
